@@ -1,8 +1,6 @@
-const WEATHER_API_ID = "4b4a12faad581af29ea5488b26df8fe8";
-const WEATHER_API_URL = `http://samples.openweathermap.org/data/2.5/forecast?appid=${WEATHER_API_ID}`;
-const FETCH_WEATHER = 'FETCH_WEATHER'
-// import FETCH_WEATHER from '../constants'
-// import WEATHER_API_URL from '../constants'
+
+import { FETCH_WEATHER } from '../constants'
+import { WEATHER_API_URL } from '../constants'
 
 import axios from 'axios';
 
