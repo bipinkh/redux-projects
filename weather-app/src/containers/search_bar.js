@@ -1,6 +1,10 @@
-import React, {Component} from 'react'
+import React, {Component} from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-export default class SearchBar extends Component{
+import {fetchWeather} from '../actions/index';
+
+class SearchBar extends Component{
 
   constructor(props){
     super(props);
@@ -8,11 +12,12 @@ export default class SearchBar extends Component{
 
     //if we are calling a callback function like below, this inside the handler will refer to the unknown context and not of this Component
     this.onInputChange = this.onInputChange.bind(this);
+    this.onFormSubmit = this.onFormSubmit.bind(this);
   }
 
 // input text change event handler
 onInputChange(event) {
-  console.log(event.target.value);
+  // console.log(event.target.value);
   this.setState({term:event.target.value});
 }
 
@@ -20,7 +25,9 @@ onInputChange(event) {
 onFormSubmit(event){
   event.preventDefault(); //do not reload
 
-
+  // fire up the action creator
+  this.props.fetchWeather(this.state.term);
+  this.setState({ term:'' });
 }
 
   render(){
@@ -41,5 +48,10 @@ onFormSubmit(event){
       </form>
     )
   }
-
 }
+
+function mapDispatchToProps(dispatch){
+  return bindActionCreators( {fetchWeather}, dispatch);
+}
+
+export default connect(null, mapDispatchToProps)(SearchBar);
