@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
+import {AppRoute} from '../routes';
 
 export default class App extends Component {
   render() {
     return (
-      <div>React simple starter</div>
+      <div>
+                {this.props.children}
+      </div>
     );
   }
 }
